@@ -21,7 +21,7 @@
             "[Semantic Versioning]: https://semver.org/",
             "",
             "<!-- Versions -->",
-            "[Unreleased]: https://github.com/${1:Author}/${2:Repository}/CHANGELOG.md",
+            "[Unreleased]: CHANGELOG.md",
             "[Released]: https://github.com/${1:Author}/${2:Repository}/releases",
             "[0.0.2]: https://github.com/${1:Author}/${2:Repository}/compare/v0.0.1..v0.0.2",
             "[0.0.1]: https://github.com/${1:Author}/${2:Repository}/tree/v0.0.1"
