@@ -30,7 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 [Semantic Versioning]: https://semver.org/
 
 <!-- Versions -->
-[Unreleased]: https://github.com/RLNT/vscode-keepachangelog/CHANGELOG.md
+[Unreleased]: CHANGELOG.md
 [Released]: https://github.com/RLNT/vscode-keepachangelog/releases
 [1.0.1]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.0..v1.0.1
-[1.0.0]: https://github.com/RLNT/vscode-keepachangelog/tree/v1.0.0
+[1.0.0]: https://github.com/RLNT/vscode-keepachangelog/releases/tag/v1.0.0
