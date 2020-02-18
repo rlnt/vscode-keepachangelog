@@ -100,4 +100,4 @@ Everything related to versions and their release notes can be found in the [chan
 [Version]: https://vsmarketplacebadge.apphb.com/
 [Installs]: https://vsmarketplacebadge.apphb.com/
 [Ratings]: https://vsmarketplacebadge.apphb.com/
-[init]: https://github.com/RLNT/vscode-keepachangelog/images/init.gif
+[init]: https://github.com/RLNT/vscode-keepachangelog/blob/master/images/init.gif
