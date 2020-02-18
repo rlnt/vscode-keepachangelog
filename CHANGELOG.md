@@ -11,6 +11,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ## **[Released]**
 
+## [1.0.1] - 2020-02-18
+
+### Removed
+- marketplace header
+
+### Fixed
+- image links and paths
+
+
 ## [1.0.0] - 2020-02-18
 - initial release
 
@@ -23,4 +32,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 <!-- Versions -->
 [Unreleased]: https://github.com/RLNT/vscode-keepachangelog/CHANGELOG.md
 [Released]: https://github.com/RLNT/vscode-keepachangelog/releases
+[1.0.1]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.0..v1.0.1
 [1.0.0]: https://github.com/RLNT/vscode-keepachangelog/tree/v1.0.0
