@@ -8,6 +8,10 @@
 [![](https://vsmarketplacebadge.apphb.com/installs-short/rlnt.keep-a-changelog.svg)](https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog)
 [![](https://vsmarketplacebadge.apphb.com/rating/rlnt.keep-a-changelog.svg)](https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog)
 
+#### Links
+- [Discord]
+- [Marketplace]
+
 ---
 
 ## **Features**
