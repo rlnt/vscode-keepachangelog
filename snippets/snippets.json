@@ -5,7 +5,7 @@
             "# Changelog",
             "All notable changes to this project will be documented in this file.",
             "",
-            "The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).",
+            "The format is based on [Keep a Changelog][Keep a Changelog] and this project adheres to [Semantic Versioning][Semantic Versioning].",
             "",
             "## [Unreleased]",
             "$0",
@@ -104,15 +104,12 @@
     },
     "creates first version link": {
         "prefix": "changelog-link-first-version",
-        "body": [ "[${1:Version}]: https://github.com/${2:Author}/${3:Repository}/releases/v${1:Version}", "$0" ],
+        "body": "[${1:Version}]: https://github.com/${2:Author}/${3:Repository}/releases/v${1:Version}$0",
         "description": "creates a link for the first version"
     },
     "creates compare version link": {
         "prefix": "changelog-link-compare-version",
-        "body": [
-            "[${1:Version}]: https://github.com/${2:Author}/${3:Repository}/compare/v${4:PreviousVersion}..v${1:Version}",
-            "$0"
-        ],
+        "body": "[${1:Version}]: https://github.com/${2:Author}/${3:Repository}/compare/v${4:PreviousVersion}..v${1:Version}$0",
         "description": "creates a link to compare a version"
     }
 }
