@@ -4,9 +4,9 @@
 
 ---
 
-![Version]
-![Installs]
-![Ratings]
+[![](https://vsmarketplacebadge.apphb.com/version-short/rlnt.keep-a-changelog.svg)](https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog)
+[![](https://vsmarketplacebadge.apphb.com/installs-short/rlnt.keep-a-changelog.svg)](https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog)
+[![](https://vsmarketplacebadge.apphb.com/rating/rlnt.keep-a-changelog.svg)](https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog)
 
 ---
 
@@ -97,7 +97,4 @@ Everything related to versions and their release notes can be found in the [chan
 [Changelog]: CHANGELOG.md
 
 <!-- Images -->
-[Version]: https://vsmarketplacebadge.apphb.com/
-[Installs]: https://vsmarketplacebadge.apphb.com/
-[Ratings]: https://vsmarketplacebadge.apphb.com/
-[init]: https://github.com/RLNT/vscode-keepachangelog/blob/master/images/init.gif
+[init]: https://raw.githubusercontent.com/RLNT/vscode-keepachangelog/master/images/init.gif
