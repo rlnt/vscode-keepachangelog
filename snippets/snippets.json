@@ -104,15 +104,12 @@
     },
     "creates first version link": {
         "prefix": "changelog-link-first-version",
-        "body": [ "[${1:Version}]: https://github.com/${2:Author}/${3:Repository}/releases/v${1:Version}", "$0" ],
+        "body": "[${1:Version}]: https://github.com/${2:Author}/${3:Repository}/releases/v${1:Version}$0",
         "description": "creates a link for the first version"
     },
     "creates compare version link": {
         "prefix": "changelog-link-compare-version",
-        "body": [
-            "[${1:Version}]: https://github.com/${2:Author}/${3:Repository}/compare/v${4:PreviousVersion}..v${1:Version}",
-            "$0"
-        ],
+        "body": "[${1:Version}]: https://github.com/${2:Author}/${3:Repository}/compare/v${4:PreviousVersion}..v${1:Version}$0",
         "description": "creates a link to compare a version"
     }
 }
