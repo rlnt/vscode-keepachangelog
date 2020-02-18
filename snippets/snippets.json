@@ -24,7 +24,7 @@
             "[Unreleased]: CHANGELOG.md",
             "[Released]: https://github.com/${1:Author}/${2:Repository}/releases",
             "[0.0.2]: https://github.com/${1:Author}/${2:Repository}/compare/v0.0.1..v0.0.2",
-            "[0.0.1]: https://github.com/${1:Author}/${2:Repository}/tree/v0.0.1"
+            "[0.0.1]: https://github.com/${1:Author}/${2:Repository}/releases/v0.0.1"
         ],
         "description": "initiates a new changelog"
     },
@@ -104,7 +104,7 @@
     },
     "creates first version link": {
         "prefix": "changelog-link-first-version",
-        "body": [ "[${1:Version}]: https://github.com/${2:Author}/${3:Repository}/tree/v${1:Version}", "$0" ],
+        "body": [ "[${1:Version}]: https://github.com/${2:Author}/${3:Repository}/releases/v${1:Version}", "$0" ],
         "description": "creates a link for the first version"
     },
     "creates compare version link": {
