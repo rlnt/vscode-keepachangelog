@@ -2,7 +2,7 @@
     "name": "keep-a-changelog",
     "displayName": "Keep a Changelog",
     "description": "An extension that provides snippets for markdown files to create a changelog with the ruleset of Keep a Changelog.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publisher": "RLNT",
     "author": {
         "name": "RLNT"
