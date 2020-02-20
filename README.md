@@ -93,7 +93,7 @@ Everything related to versions and their release notes can be found in the [chan
 [Visual Studio Code]: https://code.visualstudio.com/
 [Keep a Changelog]: https://keepachangelog.com/
 [Semantic Versioning]: https://semver.org/
-[Marketplace]: https://marketplace.visualstudio.com/vscode
+[Marketplace]: https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog
 [Issues]: https://github.com/RLNT/vscode-keepachangelog/issues
 [Discord]: https://discordapp.com/invite/Q3qxws6
 [Contribution]: CONTRIBUTING.md
