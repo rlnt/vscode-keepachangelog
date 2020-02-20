@@ -11,6 +11,11 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 
 ## **[Released]**
 
+## [1.0.4] - 2020-02-20
+
+### Changed
+- link to 'Unreleased' to fit Keep a Changelog ruleset
+
 ## [1.0.3] - 2020-02-18
 
 ### Changed
@@ -45,6 +50,7 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 <!-- Versions -->
 [Unreleased]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.0...HEAD
 [Released]: https://github.com/RLNT/vscode-keepachangelog/releases
+[1.0.4]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.3..v1.0.4
 [1.0.3]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.2..v1.0.3
 [1.0.2]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.1..v1.0.2
 [1.0.1]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.0..v1.0.1
