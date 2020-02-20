@@ -1,6 +1,6 @@
 # **Keep a Changelog**
 
-> A [Visual Studio Code] extension that provides snippets for markdown files to create a changelog with the rulset of [Keep a Changelog].
+> A [Visual Studio Code] extension that provides snippets for markdown files to create a changelog with the ruleset of [Keep a Changelog].
 
 ---
 
@@ -56,7 +56,7 @@ Example of how to initiate a changelog with the snippets:
 
 ## **Installation**
 
-Go to the [Visual Studio Code Marketplate][Marketplace] and search for **Keep a Changelog** and click the *install* button on the top of the site. You should be prompted to open Visual Studio Code in order to install the extension.<br>
+Go to the [Visual Studio Code Marketplate][Marketplace] and click the *install* button on the top of the site. You should be prompted to open Visual Studio Code in order to install the extension.<br>
 
 You can also use the integrated extension browser in [VSCode][Visual Studio Code] to install it.
 
@@ -93,7 +93,7 @@ Everything related to versions and their release notes can be found in the [chan
 [Visual Studio Code]: https://code.visualstudio.com/
 [Keep a Changelog]: https://keepachangelog.com/
 [Semantic Versioning]: https://semver.org/
-[Marketplace]: https://marketplace.visualstudio.com/vscode
+[Marketplace]: https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog
 [Issues]: https://github.com/RLNT/vscode-keepachangelog/issues
 [Discord]: https://discordapp.com/invite/Q3qxws6
 [Contribution]: CONTRIBUTING.md
