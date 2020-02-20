@@ -2,13 +2,10 @@
 
 > A [Visual Studio Code] extension that provides snippets for markdown files to create a changelog with the ruleset of [Keep a Changelog].
 
----
-
 [![](https://vsmarketplacebadge.apphb.com/version-short/rlnt.keep-a-changelog.svg)](https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog)
 [![](https://vsmarketplacebadge.apphb.com/installs-short/rlnt.keep-a-changelog.svg)](https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog)
 [![](https://vsmarketplacebadge.apphb.com/rating/rlnt.keep-a-changelog.svg)](https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog)
 
-#### Links
 - [Discord]
 - [Marketplace]
 
@@ -30,7 +27,6 @@
 Example of how to initiate a changelog with the snippets:
 ![init]
 
----
 
 ## **All Snippets**
 
@@ -52,7 +48,6 @@ Example of how to initiate a changelog with the snippets:
 | changelog-link-first-version   | Creates a reference link for your first version tag. The version number and the keys for the URL can be overwritten by using tabs.                                                                                             |
 | changelog-link-compare-version | Creates a reference link to compare two versions. This should be used for any version past the first version. The version number and the to compare version number as well as the keys for the URL can be overwritten by tabs. |
 
----
 
 ## **Installation**
 
@@ -60,27 +55,22 @@ Go to the [Visual Studio Code Marketplate][Marketplace] and click the *install* 
 
 You can also use the integrated extension browser in [VSCode][Visual Studio Code] to install it.
 
----
 
 ## **Known Issues**
 
-#### NOTHING KNOWN
+##### NOTHING KNOWN
 - make sure to report issues in the [GitHub issues][Issues]
 - you can also join our [Discord]
 
----
 
 ## **Contribution**
 
 All you need to know is written down in our [contribution guidelines][Contribution].
 
----
 
 ## **License**
 
 This project is licensed under the [MIT License][License].
-
----
 
 
 ## **Release Notes**
