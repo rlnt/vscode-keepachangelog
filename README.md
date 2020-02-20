@@ -56,7 +56,7 @@ Example of how to initiate a changelog with the snippets:
 
 ## **Installation**
 
-Go to the [Visual Studio Code Marketplate][Marketplace] and search for **Keep a Changelog** and click the *install* button on the top of the site. You should be prompted to open Visual Studio Code in order to install the extension.<br>
+Go to the [Visual Studio Code Marketplate][Marketplace] and click the *install* button on the top of the site. You should be prompted to open Visual Studio Code in order to install the extension.<br>
 
 You can also use the integrated extension browser in [VSCode][Visual Studio Code] to install it.
 
