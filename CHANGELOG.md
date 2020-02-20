@@ -43,7 +43,7 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 [Semantic Versioning]: https://semver.org/
 
 <!-- Versions -->
-[Unreleased]: CHANGELOG.md
+[Unreleased]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.0...HEAD
 [Released]: https://github.com/RLNT/vscode-keepachangelog/releases
 [1.0.3]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.2..v1.0.3
 [1.0.2]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.1..v1.0.2
