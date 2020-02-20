@@ -1,6 +1,6 @@
 # **Keep a Changelog**
 
-> A [Visual Studio Code] extension that provides snippets for markdown files to create a changelog with the rulset of [Keep a Changelog].
+> A [Visual Studio Code] extension that provides snippets for markdown files to create a changelog with the ruleset of [Keep a Changelog].
 
 ---
 
