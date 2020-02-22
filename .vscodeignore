@@ -1,3 +1,7 @@
-.gitignore
+# Directories
+.github/
 .vscode/
+
+# Files
 images/init.gif
+.gitignore
