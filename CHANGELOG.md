@@ -11,6 +11,11 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 
 ## **[Released]**
 
+## [1.0.6] - 2020-02-22
+
+### Removed
+- .github directory from extension
+
 ## [1.0.5] - 2020-02-20
 
 ### Fixed
@@ -55,6 +60,7 @@ The format is based on [Keep a Changelog][Keep a Changelog] and this project adh
 <!-- Versions -->
 [Unreleased]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.0...HEAD
 [Released]: https://github.com/RLNT/vscode-keepachangelog/releases
+[1.0.6]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.5..v1.0.6
 [1.0.5]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.4..v1.0.5
 [1.0.4]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.3..v1.0.4
 [1.0.3]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.2..v1.0.3
