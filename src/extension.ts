@@ -23,6 +23,36 @@ export function activate(): void {
     });
     const untitledFile = config.get('untitledFile', false);
     const triggerCharacter = config.get('triggerCharacter', true);
+    const dateFormat = config.get('dateFormat');
+    const dateSeparator = config.get('dateSeparator', '-');
+    const defaultAuthor = config.get('defaultAuthor', '');
+    const defaultRepository = config.get('defaultRepository', '');
+    let dateDisplay: string;
+    let dateEditable: string;
+    let dateFix: string;
+
+    switch (dateFormat) {
+        case 'YYYY/MM/DD':
+            dateDisplay = `2012${dateSeparator}10${dateSeparator}25`;
+            dateEditable = `\${2:$CURRENT_YEAR}${dateSeparator}\${3:$CURRENT_MONTH}${dateSeparator}\${4:$CURRENT_DATE}`;
+            dateFix = `$CURRENT_YEAR${dateSeparator}$CURRENT_MONTH${dateSeparator}$CURRENT_DATE`;
+            break;
+        case 'MM/DD/YYYY':
+            dateDisplay = `10${dateSeparator}25${dateSeparator}2012`;
+            dateEditable = `\${2:$CURRENT_MONTH}${dateSeparator}\${3:$CURRENT_DATE}${dateSeparator}\${4:$CURRENT_YEAR}`;
+            dateFix = `$CURRENT_MONTH${dateSeparator}$CURRENT_DATE${dateSeparator}$CURRENT_YEAR`;
+            break;
+        case 'DD/MM/YYYY':
+            dateDisplay = `25${dateSeparator}10${dateSeparator}2012`;
+            dateEditable = `\${2:$CURRENT_DATE}${dateSeparator}\${3:$CURRENT_MONTH}${dateSeparator}\${4:$CURRENT_YEAR}`;
+            dateFix = `$CURRENT_DATE${dateSeparator}$CURRENT_MONTH${dateSeparator}$CURRENT_YEAR`;
+            break;
+        default:
+            dateDisplay = `2012${dateSeparator}10${dateSeparator}25`;
+            dateEditable = `\${2:$CURRENT_YEAR}${dateSeparator}\${3:$CURRENT_MONTH}${dateSeparator}\${4:$CURRENT_DATE}`;
+            dateFix = `$CURRENT_YEAR${dateSeparator}$CURRENT_MONTH${dateSeparator}$CURRENT_DATE`;
+            break;
+    }
 
     const completionProvider = {
         provideCompletionItems(doc: vscode.TextDocument): vscode.CompletionItem[] {
@@ -32,35 +62,6 @@ export function activate(): void {
                 const path = doc.uri.path;
                 const fileName = path.substr(path.lastIndexOf('/') + 1, path.length).toLowerCase();
                 if (!validFiles.includes(fileName)) return [];
-            }
-
-            const timeFormat = config.get('dateFormat');
-            const timeSeparator = config.get('dateSeparator', '-');
-            let dateDisplay: string;
-            let dateEditable: string;
-            let dateFix: string;
-
-            switch (timeFormat) {
-                case 'YYYY/MM/DD':
-                    dateDisplay = `2012${timeSeparator}10${timeSeparator}25`;
-                    dateEditable = `\${2:$CURRENT_YEAR}${timeSeparator}\${3:$CURRENT_MONTH}${timeSeparator}\${4:$CURRENT_DATE}`;
-                    dateFix = `$CURRENT_YEAR${timeSeparator}$CURRENT_MONTH${timeSeparator}$CURRENT_DATE`;
-                    break;
-                case 'MM/DD/YYYY':
-                    dateDisplay = `10${timeSeparator}25${timeSeparator}2012`;
-                    dateEditable = `\${2:$CURRENT_MONTH}${timeSeparator}\${3:$CURRENT_DATE}${timeSeparator}\${4:$CURRENT_YEAR}`;
-                    dateFix = `$CURRENT_MONTH${timeSeparator}$CURRENT_DATE${timeSeparator}$CURRENT_YEAR`;
-                    break;
-                case 'DD/MM/YYYY':
-                    dateDisplay = `25${timeSeparator}10${timeSeparator}2012`;
-                    dateEditable = `\${2:$CURRENT_DATE}${timeSeparator}\${3:$CURRENT_MONTH}${timeSeparator}\${4:$CURRENT_YEAR}`;
-                    dateFix = `$CURRENT_DATE${timeSeparator}$CURRENT_MONTH${timeSeparator}$CURRENT_YEAR`;
-                    break;
-                default:
-                    dateDisplay = `2012${timeSeparator}10${timeSeparator}25`;
-                    dateEditable = `\${2:$CURRENT_YEAR}${timeSeparator}\${3:$CURRENT_MONTH}${timeSeparator}\${4:$CURRENT_DATE}`;
-                    dateFix = `$CURRENT_YEAR${timeSeparator}$CURRENT_MONTH${timeSeparator}$CURRENT_DATE`;
-                    break;
             }
 
             const clInit = new vscode.SnippetString(

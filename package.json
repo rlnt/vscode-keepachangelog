@@ -49,7 +49,7 @@
       "properties": {
         "keep-a-changelog.validFiles": {
           "title": "Valid Files",
-          "description": "The list of file names in which changelog snippets should be shown.\nThis is useful so snippets are not suggested in all Markdown files.\nFile names don't need the file extension and are case insensitive.\nChanging this list requires a window reload or a restart of VSCode.",
+          "description": "The list of file names in which changelog snippets should be shown.\nThis is useful so snippets are not suggested in all Markdown files.\nFile names don't need the file extension and are case insensitive.",
           "type": "array",
           "default": [
             "changelog"
@@ -57,13 +57,13 @@
         },
         "keep-a-changelog.untitledFile": {
           "title": "Untitled File",
-          "description": "When true, snippets will also work in untitled markdown files.\nChanging this option requires a window reload or a restart of VSCode.",
+          "description": "When true, snippets will also work in untitled markdown files.",
           "type": "boolean",
           "default": false
         },
         "keep-a-changelog.triggerCharacter": {
           "title": "Trigger Character",
-          "description": "When true, changelog snippet suggestions will be triggered by the character c.\nChanging this option requires a window reload or a restart of VSCode.",
+          "description": "When true, changelog snippet suggestions will be triggered by the character c.",
           "type": "boolean",
           "default": true
         },
