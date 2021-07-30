@@ -1,34 +1,118 @@
 {
-    "name": "keep-a-changelog",
-    "displayName": "Keep a Changelog",
-    "description": "An extension that provides snippets for markdown files to create a changelog with the ruleset of Keep a Changelog.",
-    "version": "1.0.6",
-    "publisher": "RLNT",
-    "author": {
-        "name": "RLNT"
-    },
-    "categories": [ "Snippets" ],
-    "icon": "images/icon.png",
-    "keywords": [ "markdown", "changelog", "keep a changelog", "snippets", "changelog snippets" ],
-    "markdown": "github",
-    "engines": {
-        "vscode": "^1.42.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/RLNT/vscode-keepachangelog.git"
-    },
-    "bugs": {
-        "url": "https://github.com/RLNT/vscode-keepachangelog/issues",
-        "email": "damnrelentless.yt@gmail.com"
-    },
-    "license": "MIT",
-    "contributes": {
-        "snippets": [
-            {
-                "language": "markdown",
-                "path": "./snippets/snippets.json"
-            }
-        ]
+  "name": "keep-a-changelog",
+  "displayName": "Keep a Changelog",
+  "version": "1.1.0",
+  "description": "An extension that provides snippets for markdown files to create a changelog with the ruleset of Keep a Changelog.",
+  "categories": [
+    "Snippets"
+  ],
+  "keywords": [
+    "markdown",
+    "changelog",
+    "keep a changelog",
+    "snippets",
+    "changelog snippets"
+  ],
+  "bugs": {
+    "url": "https://github.com/RLNT/vscode-keepachangelog/issues",
+    "email": "team@rlnt.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RLNT/vscode-keepachangelog.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "RLNT"
+  },
+  "publisher": "RLNT",
+  "main": "./out/main.js",
+  "scripts": {
+    "vscode:prepublish": "npm run -S esbuild-base -- --minify",
+    "compile": "tsc -p ./",
+    "deploy": "vsce publish",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild-watch": "npm run -S esbuild-base -- --sourcemap --watch",
+    "esbuild": "npm run -S esbuild-base -- --sourcemap",
+    "format": "prettier --write",
+    "lint": "eslint src --ext ts",
+    "prepare": "husky install",
+    "pretest": "npm run compile && npm run lint",
+    "test": "node ./out/test/runTest.js",
+    "pretty-quick": "pretty-quick --staged",
+    "test-compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "contributes": {
+    "configuration": {
+      "title": "Keep a Changelog",
+      "properties": {
+        "keep-a-changelog.validFiles": {
+          "title": "Valid Files",
+          "description": "The list of file names in which changelog snippets should be shown.\nThis is useful so snippets are not suggested in all Markdown files.\nFile names don't need the file extension and are case insensitive.\nChanging this list requires a window reload or a restart of VSCode.",
+          "type": "array",
+          "default": [
+            "changelog"
+          ]
+        },
+        "keep-a-changelog.untitledFile": {
+          "title": "Untitled File",
+          "description": "When true, snippets will also work in untitled markdown files.\nChanging this option requires a window reload or a restart of VSCode.",
+          "type": "boolean",
+          "default": false
+        },
+        "keep-a-changelog.triggerCharacter": {
+          "title": "Trigger Character",
+          "description": "When true, changelog snippet suggestions will be triggered by the character c.\nChanging this option requires a window reload or a restart of VSCode.",
+          "type": "boolean",
+          "default": true
+        },
+        "keep-a-changelog.dateFormat": {
+          "title": "Date Format",
+          "description": "The format of the date in the changelog.",
+          "type": "string",
+          "enum": [
+            "DD/MM/YYYY",
+            "MM/DD/YYYY",
+            "YYYY/MM/DD"
+          ],
+          "default": "YYYY/MM/DD"
+        },
+        "keep-a-changelog.dateSeparator": {
+          "title": "Date Separator",
+          "description": "The separator used for the date format in the changelog.",
+          "type": "string",
+          "default": "-"
+        }
+      }
     }
+  },
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "14.x",
+    "@types/vscode": "^1.58.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "esbuild": "^0.12.17",
+    "eslint": "^7.27.0",
+    "eslint-config-prettier": "^8.3.0",
+    "glob": "^7.1.7",
+    "husky": "^7.0.1",
+    "mocha": "^8.4.0",
+    "prettier": "^2.3.2",
+    "prettier-plugin-packagejson": "^2.2.11",
+    "pretty-quick": "^3.1.1",
+    "typescript": "^4.3.2",
+    "vsce": "^1.96.1",
+    "vscode-test": "^1.5.2"
+  },
+  "engines": {
+    "vscode": "^1.58.0"
+  },
+  "icon": "images/icon.png",
+  "markdown": "github"
 }
