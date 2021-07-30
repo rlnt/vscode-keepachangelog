@@ -1,7 +1,7 @@
 {
   "name": "keep-a-changelog",
   "displayName": "Keep a Changelog",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "An extension that provides snippets for markdown files to create a changelog with the ruleset of Keep a Changelog.",
   "categories": [
     "Snippets"
@@ -26,12 +26,12 @@
     "name": "RLNT"
   },
   "publisher": "RLNT",
-  "main": "./out/main.js",
+  "main": "./dist/extension.js",
   "scripts": {
     "vscode:prepublish": "npm run -S esbuild-base -- --minify",
     "compile": "tsc -p ./",
     "deploy": "vsce publish",
-    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/main.js --external:vscode --format=cjs --platform=node",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
     "esbuild-watch": "npm run -S esbuild-base -- --sourcemap --watch",
     "esbuild": "npm run -S esbuild-base -- --sourcemap",
     "format": "prettier --write",
