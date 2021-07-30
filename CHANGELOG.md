@@ -10,6 +10,18 @@ and this project adheres to [Semantic Versioning].
 - /
 
 
+## [1.2.0] - 2021-07-30
+
+### Added
+- default author extension setting
+- default repository extension setting
+
+### Changed
+- options no longer hot-reload to save performance
+  - this means you have to reload the window or restart VSCode when editing a setting
+- moved date formatter outside of completion provider
+
+
 ## [1.1.2] - 2021-07-30
 
 ### Fixed
@@ -75,7 +87,9 @@ and this project adheres to [Semantic Versioning].
 [semantic versioning]: https://semver.org/spec/v2.0.0.html
 
 <!-- Versions -->
-[unreleased]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.1.1...HEAD
+[unreleased]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.1.2...v1.2.0
+[1.1.2]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.6...v1.1.0
 [1.0.6]: https://github.com/RLNT/vscode-keepachangelog/compare/v1.0.5...v1.0.6
