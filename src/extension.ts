@@ -14,6 +14,22 @@ function entrySnippet(type: string): vscode.CompletionItem {
     };
 }
 
+function getAuthor(author: string, index: number): string {
+    if (author.length > 0) {
+        return author;
+    } else {
+        return `\${${index}:Author}`;
+    }
+}
+
+function getRepository(repo: string, index: number): string {
+    if (repo.length > 0) {
+        return repo;
+    } else {
+        return `\${${index}:Repository}`;
+    }
+}
+
 export function activate(): void {
     const config = vscode.workspace.getConfiguration('keep-a-changelog');
     const validFiles = config.get('validFiles', ['changelog.md']).map(e => {
@@ -23,6 +39,36 @@ export function activate(): void {
     });
     const untitledFile = config.get('untitledFile', false);
     const triggerCharacter = config.get('triggerCharacter', true);
+    const dateFormat = config.get('dateFormat');
+    const dateSeparator = config.get('dateSeparator', '-');
+    const defaultAuthor = config.get('defaultAuthor', '');
+    const defaultRepository = config.get('defaultRepository', '');
+    let dateDisplay: string;
+    let dateEditable: string;
+    let dateFix: string;
+
+    switch (dateFormat) {
+        case 'YYYY/MM/DD':
+            dateDisplay = `2012${dateSeparator}10${dateSeparator}25`;
+            dateEditable = `\${2:$CURRENT_YEAR}${dateSeparator}\${3:$CURRENT_MONTH}${dateSeparator}\${4:$CURRENT_DATE}`;
+            dateFix = `$CURRENT_YEAR${dateSeparator}$CURRENT_MONTH${dateSeparator}$CURRENT_DATE`;
+            break;
+        case 'MM/DD/YYYY':
+            dateDisplay = `10${dateSeparator}25${dateSeparator}2012`;
+            dateEditable = `\${2:$CURRENT_MONTH}${dateSeparator}\${3:$CURRENT_DATE}${dateSeparator}\${4:$CURRENT_YEAR}`;
+            dateFix = `$CURRENT_MONTH${dateSeparator}$CURRENT_DATE${dateSeparator}$CURRENT_YEAR`;
+            break;
+        case 'DD/MM/YYYY':
+            dateDisplay = `25${dateSeparator}10${dateSeparator}2012`;
+            dateEditable = `\${2:$CURRENT_DATE}${dateSeparator}\${3:$CURRENT_MONTH}${dateSeparator}\${4:$CURRENT_YEAR}`;
+            dateFix = `$CURRENT_DATE${dateSeparator}$CURRENT_MONTH${dateSeparator}$CURRENT_YEAR`;
+            break;
+        default:
+            dateDisplay = `2012${dateSeparator}10${dateSeparator}25`;
+            dateEditable = `\${2:$CURRENT_YEAR}${dateSeparator}\${3:$CURRENT_MONTH}${dateSeparator}\${4:$CURRENT_DATE}`;
+            dateFix = `$CURRENT_YEAR${dateSeparator}$CURRENT_MONTH${dateSeparator}$CURRENT_DATE`;
+            break;
+    }
 
     const completionProvider = {
         provideCompletionItems(doc: vscode.TextDocument): vscode.CompletionItem[] {
@@ -32,35 +78,6 @@ export function activate(): void {
                 const path = doc.uri.path;
                 const fileName = path.substr(path.lastIndexOf('/') + 1, path.length).toLowerCase();
                 if (!validFiles.includes(fileName)) return [];
-            }
-
-            const timeFormat = config.get('dateFormat');
-            const timeSeparator = config.get('dateSeparator', '-');
-            let dateDisplay: string;
-            let dateEditable: string;
-            let dateFix: string;
-
-            switch (timeFormat) {
-                case 'YYYY/MM/DD':
-                    dateDisplay = `2012${timeSeparator}10${timeSeparator}25`;
-                    dateEditable = `\${2:$CURRENT_YEAR}${timeSeparator}\${3:$CURRENT_MONTH}${timeSeparator}\${4:$CURRENT_DATE}`;
-                    dateFix = `$CURRENT_YEAR${timeSeparator}$CURRENT_MONTH${timeSeparator}$CURRENT_DATE`;
-                    break;
-                case 'MM/DD/YYYY':
-                    dateDisplay = `10${timeSeparator}25${timeSeparator}2012`;
-                    dateEditable = `\${2:$CURRENT_MONTH}${timeSeparator}\${3:$CURRENT_DATE}${timeSeparator}\${4:$CURRENT_YEAR}`;
-                    dateFix = `$CURRENT_MONTH${timeSeparator}$CURRENT_DATE${timeSeparator}$CURRENT_YEAR`;
-                    break;
-                case 'DD/MM/YYYY':
-                    dateDisplay = `25${timeSeparator}10${timeSeparator}2012`;
-                    dateEditable = `\${2:$CURRENT_DATE}${timeSeparator}\${3:$CURRENT_MONTH}${timeSeparator}\${4:$CURRENT_YEAR}`;
-                    dateFix = `$CURRENT_DATE${timeSeparator}$CURRENT_MONTH${timeSeparator}$CURRENT_YEAR`;
-                    break;
-                default:
-                    dateDisplay = `2012${timeSeparator}10${timeSeparator}25`;
-                    dateEditable = `\${2:$CURRENT_YEAR}${timeSeparator}\${3:$CURRENT_MONTH}${timeSeparator}\${4:$CURRENT_DATE}`;
-                    dateFix = `$CURRENT_YEAR${timeSeparator}$CURRENT_MONTH${timeSeparator}$CURRENT_DATE`;
-                    break;
             }
 
             const clInit = new vscode.SnippetString(
@@ -99,9 +116,18 @@ export function activate(): void {
                     '[semantic versioning]: https://semver.org/spec/v2.0.0.html',
                     '',
                     '<!-- Versions -->',
-                    '[unreleased]: https://github.com/${1:Author}/${2:Repository}/compare/v0.0.2...HEAD',
-                    '[0.0.2]: https://github.com/${1:Author}/${2:Repository}/compare/v0.0.1...v0.0.2',
-                    '[0.0.1]: https://github.com/${1:Author}/${2:Repository}/releases/tag/v0.0.1'
+                    `[unreleased]: https://github.com/${getAuthor(defaultAuthor, 1)}/${getRepository(
+                        defaultRepository,
+                        2
+                    )}/compare/v0.0.2...HEAD`,
+                    `[0.0.2]: https://github.com/${getAuthor(defaultAuthor, 1)}/${getRepository(
+                        defaultRepository,
+                        2
+                    )}/compare/v0.0.1...v0.0.2`,
+                    `[0.0.1]: https://github.com/${getAuthor(defaultAuthor, 1)}/${getRepository(
+                        defaultRepository,
+                        2
+                    )}/releases/tag/v0.0.1`
                 ])
             );
 
@@ -190,10 +216,13 @@ export function activate(): void {
                     kind: vscode.CompletionItemKind.Snippet,
                     detail: 'Initiates a new link for the first version.',
                     documentation: new vscode.MarkdownString(
-                        '[1.0.0]: https://github.com/RLNT/keep-a-changelog/releases/v1.0.0'
+                        '[1.0.0] https://github.com/RLNT/keep-a-changelog/releases/v1.0.0'
                     ),
                     insertText: new vscode.SnippetString(
-                        '[${1:Version}]: https://github.com/${2:Author}/${3:Repository}/releases/v${1:Version}$0'
+                        `[\${1:Version}]: https://github.com/${getAuthor(defaultAuthor, 2)}/${getRepository(
+                            defaultRepository,
+                            3
+                        )}/releases/v\${1:Version}$0`
                     )
                 },
                 {
@@ -201,10 +230,13 @@ export function activate(): void {
                     kind: vscode.CompletionItemKind.Snippet,
                     detail: 'Initiates a new link for comparing two versions.',
                     documentation: new vscode.MarkdownString(
-                        '[1.0.0]: https://github.com/RLNT/keep-a-changelog/compare/v1.0.0..v1.1.0'
+                        '[1.0.0] https://github.com/RLNT/keep-a-changelog/compare/v1.0.0..v1.1.0'
                     ),
                     insertText: new vscode.SnippetString(
-                        '[${1:Version}]: https://github.com/${2:Author}/${3:Repository}/compare/v${4:PreviousVersion}..v${1:Version}$0'
+                        `[\${1:Version}]: https://github.com/${getAuthor(defaultAuthor, 2)}/${getRepository(
+                            defaultRepository,
+                            3
+                        )}/compare/v\${4:PreviousVersion}..v\${1:Version}$0`
                     )
                 }
             ];
