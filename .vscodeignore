@@ -1,7 +1,20 @@
-# Directories
-.github/
-.vscode/
+# directories
+.github
+.vscode
+.vscode-test
+node_modules
+src
+out
 
-# Files
-images/init.gif
+# files
+.editorconfig
+.eslintignore
+**/.eslintrc
 .gitignore
+.prettierignore
+.prettierrc
+vsc-extension-quickstart.md
+**/tsconfig.json
+**/*.map
+**/*.ts
+images/preview.gif

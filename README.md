@@ -2,93 +2,93 @@
 
 > A [Visual Studio Code] extension that provides snippets for markdown files to create a changelog with the ruleset of [Keep a Changelog].
 
-[![](https://vsmarketplacebadge.apphb.com/version-short/rlnt.keep-a-changelog.svg)](https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog)
-[![](https://vsmarketplacebadge.apphb.com/installs-short/rlnt.keep-a-changelog.svg)](https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog)
-[![](https://vsmarketplacebadge.apphb.com/rating/rlnt.keep-a-changelog.svg)](https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog)
+[![version]][marketplace]
+[![installs]][marketplace]
+[![rating]][marketplace]
 
 - [Discord]
 - [Marketplace]
 
 ---
 
-## **Features**
+## **📑 Overview**
+This is an extension for [Visual Studio Code].
 
-#### KEY FEATURES
+It lets you easily create changelogs with snippets which follow the ruleset of [Keep a Changelog].<br>
+It is recommended to use it with [Semantic Versioning].
+
+### **Key Features:**
 - several snippets to save time when creating a changelog
-  - formatted according to [Keep a Changelog]
-  - recommended to use with [Semantic Versioning]
-- automatic cursor positioning after the snippet was pasted
+- snippet preview in IntelliSense
+- customizable date format via extension settings
+- more extension settings to fit your needs
 - tab autofill mechanics to overwrite key values
-  - used in repository links
-  - used to create own version numbers
-  - used to provide own date of release
-  - ...
+- automatic cursor positioning after the snippet was pasted
 
-Example of how to initiate a changelog with the snippets:
-![init]
+### **Preview:**
+![preview]
 
-
-## **All Snippets**
-
-#### IMPORTANT
-- you can always use *cl* instead of *changelog*
-- the hyphen character is optional
-
-| Snippet                        | Description                                                                                                                                                                                                                    |
-|--------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| changelog-init                 | Initiates a new changelog with the header, needed links and a place for your releases and tags.                                                                                                                                |
-| changelog-version              | Creates a standalone version tag. The version number and the date can be overwritten by using tabs. The current date is pasted by default.                                                                                     |
-| changelog-version-full         | Same as changelog-version but additionally pastes all entries: added, changed, deprecated, removed, fixed, security.                                                                                                           |
-| changelog-added                | Creates an *added* entry.                                                                                                                                                                                                      |
-| changelog-changed              | Creates a *changed* entry.                                                                                                                                                                                                     |
-| changelog-deprecated           | Creates a *deprecated* entry.                                                                                                                                                                                                  |
-| changelog-removed              | Creates a *removed* entry.                                                                                                                                                                                                     |
-| changelog-fixed                | Creates a *fixed* entry.                                                                                                                                                                                                       |
-| changelog-security             | Creates a *security* entry.                                                                                                                                                                                                    |
-| changelog-link-first-version   | Creates a reference link for your first version tag. The version number and the keys for the URL can be overwritten by using tabs.                                                                                             |
-| changelog-link-compare-version | Creates a reference link to compare two versions. This should be used for any version past the first version. The version number and the to compare version number as well as the keys for the URL can be overwritten by tabs. |
+### **Includes Snippets:**
+| Snippet         | Description                                                                                                                                                                                  |
+|-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| cl-init         | Initiates a new changelog with the header, needed links and a place for your releases and tags.                                                                                              |
+| cl-version      | Creates a standalone version tag. The version number and the date can be overwritten by using tabs. The current date is pasted by default.                                                   |
+| cl-version-full | Same as changelog-version but additionally pastes all entries: *added*, *changed*, *deprecated*, *removed*, *fixed*, *security*.                                                             |
+| cl-entries      | Only pastes all entries without the version tag: *added*, *changed*, *deprecated*, *removed*, *fixed*, *security*.                                                                           |
+| cl-added        | Creates an *added* entry.                                                                                                                                                                    |
+| cl-changed      | Creates a *changed* entry.                                                                                                                                                                   |
+| cl-deprecated   | Creates a *deprecated* entry.                                                                                                                                                                |
+| cl-removed      | Creates a *removed* entry.                                                                                                                                                                   |
+| cl-fixed        | Creates a *fixed* entry.                                                                                                                                                                     |
+| cl-security     | Creates a *security* entry.                                                                                                                                                                  |
+| cl-link-first   | Creates a reference link for your first version tag. The version number and the keys for the URL can be overwritten by using tabs.                                                           |
+| cl-link-compare | Creates a reference link to compare two versions. This should be used for any version past the first version. The version numbers and the keys for the URL can be overwritten by using tabs. |
 
 
-## **Installation**
-
-Go to the [Visual Studio Code Marketplate][Marketplace] and click the *install* button on the top of the site. You should be prompted to open Visual Studio Code in order to install the extension.<br>
+## **🔧 Installation**
+Go to the [Visual Studio Code Marketplate][Marketplace] and click the *install* button on the top of the site. You should be prompted to open [Visual Studio Code] in order to install the extension.
 
 You can also use the integrated extension browser in [VSCode][Visual Studio Code] to install it.
 
 
-## **Known Issues**
+## **✋ Usage**
+By default, snippets will only be available in Markdown files which are called `changelog.md` (case-insensitive).<br>
+If you want to change that, you can do this in the extension settings. Keep in mind that only Markdown files are supported though.
 
-##### NOTHING KNOWN
-- make sure to report issues in the [GitHub issues][Issues]
-- you can also join our [Discord]
+This ensures that you only have the changelog snippets in the files you want them so they are not suggested in all Markdown documents.<br>
+You can also configure if the snippets should be suggested in unnamed files.
+
+All snippets of this extension are prefixed with `cl-`.<br>
+The `c` is a trigger character which means that as soon as you write the `c`, you will get suggestions with snippets from the extension.
+
+If you don't want this, you can disable the trigger character in the extension settings as well.
+
+Furthermore, you can manually trigger the snippet suggestions because they mostly stay hidden in Markdown files as a standard behaviour of [VSCode][Visual Studio Code] itself.<br>
+To do that, press CTRL + Spacebar after writing `cl` and you should see the snippets.
+
+This is the default keybind for suggestions. If this doesn't work for you, make sure you check which keybind you have set for `editor.action.triggerSuggest`.
+
+Take a look at the additional settings and configure the extension to your liking.
 
 
-## **Contribution**
-
-All you need to know is written down in our [contribution guidelines][Contribution].
-
-
-## **License**
-
-This project is licensed under the [MIT License][License].
+## **⏰ Changelog**
+Everything related to versions and their release notes can be found in the [changelog].
 
 
-## **Release Notes**
+## **🎓 License**
+This project is licensed under the [MIT][license] license.
 
-Everything related to versions and their release notes can be found in the [changelog][Changelog].
-
----
+<!-- Images -->
+[version]: https://vsmarketplacebadge.apphb.com/version-short/rlnt.keep-a-changelog.svg
+[installs]: https://vsmarketplacebadge.apphb.com/installs-short/rlnt.keep-a-changelog.svg
+[rating]: https://vsmarketplacebadge.apphb.com/rating/rlnt.keep-a-changelog.svg
+[preview]: https://github.com/RLNT/vscode-keepachangelog/blob/master/images/preview.gif
 
 <!-- Links -->
 [Visual Studio Code]: https://code.visualstudio.com/
 [Keep a Changelog]: https://keepachangelog.com/
-[Semantic Versioning]: https://semver.org/
 [Marketplace]: https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog
-[Issues]: https://github.com/RLNT/vscode-keepachangelog/issues
-[Discord]: https://discordapp.com/invite/Q3qxws6
-[Contribution]: CONTRIBUTING.md
-[License]: LICENSE.md
-[Changelog]: CHANGELOG.md
-
-<!-- Images -->
-[init]: https://raw.githubusercontent.com/RLNT/vscode-keepachangelog/master/images/init.gif
+[discord]: https://discordapp.com/invite/Q3qxws6
+[Semantic Versioning]: https://semver.org/
+[changelog]: CHANGELOG.md
+[license]: LICENSE
