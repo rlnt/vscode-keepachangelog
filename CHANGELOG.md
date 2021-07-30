@@ -10,6 +10,12 @@ and this project adheres to [Semantic Versioning].
 - /
 
 
+## [1.1.2] - 2021-07-30
+
+### Fixed
+- extension not able to start
+
+
 ## [1.1.1] - 2021-07-30
 
 ### Fixed
