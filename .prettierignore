@@ -1,0 +1,8 @@
+# node modules
+node_modules
+
+# all markdown files
+**/*.md
+
+# compiled files
+out

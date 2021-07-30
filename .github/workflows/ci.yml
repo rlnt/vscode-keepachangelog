@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  release:
+    types: [created]
+
+jobs:
+  lint:
+    name: Lint, Build & Publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.2.0
+        with:
+          node-version: '14'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check Prettier Format
+        run: npx pretty-quick --check --verbose
+
+      - name: Lint with ESLint
+        run: npm run lint
+
+      - name: Build
+        run: npm run compile
+
+      - name: Publish
+        if: success() && startsWith( github.ref, 'refs/tags/releases/')
+        run: npm run deploy
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
