@@ -1,17 +1,9 @@
 name: CI
 
-on:
-  push:
-    tags:
-      - '*'
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+on: [push, pull_request]
 
 jobs:
-  lint:
+  ci:
     name: Lint, Build & Publish
     runs-on: ubuntu-latest
     steps:
