@@ -82,7 +82,7 @@ This project is licensed under the [MIT][license] license.
 [version]: https://vsmarketplacebadge.apphb.com/version-short/rlnt.keep-a-changelog.svg
 [installs]: https://vsmarketplacebadge.apphb.com/installs-short/rlnt.keep-a-changelog.svg
 [rating]: https://vsmarketplacebadge.apphb.com/rating/rlnt.keep-a-changelog.svg
-[preview]: https://github.com/RLNT/vscode-keepachangelog/blob/master/images/preview.gif
+[preview]: https://github.com/RLNT/vscode-keepachangelog/blob/master/images/preview.gif?raw=true
 
 <!-- Links -->
 [Visual Studio Code]: https://code.visualstudio.com/
