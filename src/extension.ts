@@ -14,6 +14,22 @@ function entrySnippet(type: string): vscode.CompletionItem {
     };
 }
 
+function getAuthor(author: string, index: number): string {
+    if (author.length > 0) {
+        return author;
+    } else {
+        return `\${${index}:Author}`;
+    }
+}
+
+function getRepository(repo: string, index: number): string {
+    if (repo.length > 0) {
+        return repo;
+    } else {
+        return `\${${index}:Repository}`;
+    }
+}
+
 export function activate(): void {
     const config = vscode.workspace.getConfiguration('keep-a-changelog');
     const validFiles = config.get('validFiles', ['changelog.md']).map(e => {
@@ -100,9 +116,18 @@ export function activate(): void {
                     '[semantic versioning]: https://semver.org/spec/v2.0.0.html',
                     '',
                     '<!-- Versions -->',
-                    '[unreleased]: https://github.com/${1:Author}/${2:Repository}/compare/v0.0.2...HEAD',
-                    '[0.0.2]: https://github.com/${1:Author}/${2:Repository}/compare/v0.0.1...v0.0.2',
-                    '[0.0.1]: https://github.com/${1:Author}/${2:Repository}/releases/tag/v0.0.1'
+                    `[unreleased]: https://github.com/${getAuthor(defaultAuthor, 1)}/${getRepository(
+                        defaultRepository,
+                        2
+                    )}/compare/v0.0.2...HEAD`,
+                    `[0.0.2]: https://github.com/${getAuthor(defaultAuthor, 1)}/${getRepository(
+                        defaultRepository,
+                        2
+                    )}/compare/v0.0.1...v0.0.2`,
+                    `[0.0.1]: https://github.com/${getAuthor(defaultAuthor, 1)}/${getRepository(
+                        defaultRepository,
+                        2
+                    )}/releases/tag/v0.0.1`
                 ])
             );
 
@@ -191,10 +216,13 @@ export function activate(): void {
                     kind: vscode.CompletionItemKind.Snippet,
                     detail: 'Initiates a new link for the first version.',
                     documentation: new vscode.MarkdownString(
-                        '[1.0.0]: https://github.com/RLNT/keep-a-changelog/releases/v1.0.0'
+                        '[1.0.0] https://github.com/RLNT/keep-a-changelog/releases/v1.0.0'
                     ),
                     insertText: new vscode.SnippetString(
-                        '[${1:Version}]: https://github.com/${2:Author}/${3:Repository}/releases/v${1:Version}$0'
+                        `[\${1:Version}]: https://github.com/${getAuthor(defaultAuthor, 2)}/${getRepository(
+                            defaultRepository,
+                            3
+                        )}/releases/v\${1:Version}$0`
                     )
                 },
                 {
@@ -202,10 +230,13 @@ export function activate(): void {
                     kind: vscode.CompletionItemKind.Snippet,
                     detail: 'Initiates a new link for comparing two versions.',
                     documentation: new vscode.MarkdownString(
-                        '[1.0.0]: https://github.com/RLNT/keep-a-changelog/compare/v1.0.0..v1.1.0'
+                        '[1.0.0] https://github.com/RLNT/keep-a-changelog/compare/v1.0.0..v1.1.0'
                     ),
                     insertText: new vscode.SnippetString(
-                        '[${1:Version}]: https://github.com/${2:Author}/${3:Repository}/compare/v${4:PreviousVersion}..v${1:Version}$0'
+                        `[\${1:Version}]: https://github.com/${getAuthor(defaultAuthor, 2)}/${getRepository(
+                            defaultRepository,
+                            3
+                        )}/compare/v\${4:PreviousVersion}..v\${1:Version}$0`
                     )
                 }
             ];

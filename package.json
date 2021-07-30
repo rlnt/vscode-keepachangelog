@@ -83,6 +83,18 @@
           "description": "The separator used for the date format in the changelog.",
           "type": "string",
           "default": "-"
+        },
+        "keep-a-changelog.defaultAuthor": {
+          "title": "Default Author",
+          "description": "The default author used for URLs within the changelog.\nIf empty, it will use tab-completion within the snippet.\nCan be overriden via workspace settings.",
+          "type": "string",
+          "default": ""
+        },
+        "keep-a-changelog.defaultRepository": {
+          "title": "Default Repository",
+          "description": "The default repository used for URLs within the changelog.\nIf empty, it will use tab-completion within the snippet.\nCan be overriden via workspace settings.",
+          "type": "string",
+          "default": ""
         }
       }
     }
