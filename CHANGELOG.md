@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning].
 
 
 ## [Unreleased]
-- /
+- entry name case now consistent across all snippets
 
 
 ## [1.2.0] - 2021-07-30
