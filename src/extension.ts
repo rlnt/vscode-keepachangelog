@@ -205,12 +205,12 @@ export function activate(): void {
                     documentation: new vscode.MarkdownString(clEntries.value.replace('- $0', '')),
                     insertText: clEntries
                 },
-                entrySnippet('ADDED'),
-                entrySnippet('CHANGED'),
-                entrySnippet('DEPRECATED'),
-                entrySnippet('REMOVED'),
-                entrySnippet('FIXED'),
-                entrySnippet('SECURITY'),
+                entrySnippet('Added'),
+                entrySnippet('Changed'),
+                entrySnippet('Deprecated'),
+                entrySnippet('Removed'),
+                entrySnippet('Fixed'),
+                entrySnippet('Security'),
                 {
                     label: 'cl-link-first',
                     kind: vscode.CompletionItemKind.Snippet,
