@@ -8,7 +8,6 @@
   "extends": [
     "eslint:recommended",
     "plugin:jsdoc/recommended",
-    "plugin:import/typescript",
     "plugin:regexp/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier"
@@ -17,6 +16,7 @@
   "rules": {
     "prefer-const": "warn",
     "no-empty-function": "warn",
+    "jsdoc/require-jsdoc": "off",
     "@typescript-eslint/ban-types": "warn",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/explicit-member-accessibility": ["warn", { "accessibility": "explicit" }],

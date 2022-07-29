@@ -36,7 +36,7 @@ jobs:
             declare -g $1="$2"
           }
           set_var VSIX_FILE $(eval echo keep-a-changelog-*.vsix)
-          set_var VERSION $(echo ${VSIX_FILE%.*} | cut -d- -f2)
+          set_var VERSION $(echo ${VSIX_FILE%.*} | cut -d- -f4)
 
       - name: Install changelog parser
         uses: taiki-e/install-action@parse-changelog
@@ -53,6 +53,6 @@ jobs:
           files: ${{ env.VSIX_FILE }}
 
       - name: Publish
-        run: yarn release
+        run: yarn publish
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
