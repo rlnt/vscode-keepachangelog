@@ -1,0 +1,58 @@
+name: Release
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*.*.*'
+env:
+  NODE_VERSION: 18
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v3
+
+      - name: Set up NodeJS ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn package
+
+      - name: Collect version information
+        run: |
+          shopt -s failglob # print a warning if a glob does not match anything
+          set_var() {
+            echo $1="$2"
+            echo $1="$2" >> $GITHUB_ENV
+            declare -g $1="$2"
+          }
+          set_var VSIX_FILE $(eval echo keep-a-changelog-*.vsix)
+          set_var VERSION $(echo ${VSIX_FILE%.*} | cut -d- -f2)
+
+      - name: Install changelog parser
+        uses: taiki-e/install-action@parse-changelog
+
+      - name: Parse changelog
+        run: parse-changelog CHANGELOG.md ${{ env.VERSION }} > changes.md
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          body_path: changes.md
+          files: ${{ env.VSIX_FILE }}
+
+      - name: Publish
+        run: yarn release
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
