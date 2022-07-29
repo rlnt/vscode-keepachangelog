@@ -1,17 +1,38 @@
 import * as vscode from 'vscode';
 
+enum EntryType {
+    ADDED = 'Added',
+    CHANGED = 'Changed',
+    DEPRECATED = 'Deprecated',
+    REMOVED = 'Removed',
+    FIXED = 'Fixed',
+    SECURITY = 'Security'
+}
+
 function multilineString(input: string[]): string {
     return input.join('\n');
 }
 
-function entrySnippet(type: string): vscode.CompletionItem {
+function entrySnippet(type: EntryType): vscode.CompletionItem {
     return {
         label: `cl-${type.toLowerCase()}-entry`,
         kind: vscode.CompletionItemKind.Snippet,
         detail: `Initiates a new ${type.toLowerCase()} entry.`,
-        documentation: new vscode.MarkdownString(`### ${type}`),
-        insertText: new vscode.SnippetString(`### ${type}\n- $0`)
+        documentation: new vscode.MarkdownString(entryString(type)),
+        insertText: new vscode.SnippetString(`${entryString(type)}\n\n- $0`)
     };
+}
+
+function entryString(...type: EntryType[]): string {
+    if (type.length === 1) {
+        return `### ${type}`;
+    } else {
+        let output = '';
+        type.forEach(e => {
+            output += `\n${entryString(e)}\n`;
+        });
+        return output;
+    }
 }
 
 function getAuthor(author: string, index: number): string {
@@ -43,6 +64,7 @@ export function activate(): void {
     const dateSeparator = config.get('dateSeparator', '-');
     const defaultAuthor = config.get('defaultAuthor', '');
     const defaultRepository = config.get('defaultRepository', '');
+
     let dateDisplay: string;
     let dateEditable: string;
     let dateFix: string;
@@ -70,13 +92,13 @@ export function activate(): void {
             break;
     }
 
-    const completionProvider = {
+    const completionProvider: vscode.CompletionItemProvider<vscode.CompletionItem> = {
         provideCompletionItems(doc: vscode.TextDocument): vscode.CompletionItem[] {
             if (doc.isUntitled) {
                 if (!untitledFile) return [];
             } else {
                 const path = doc.uri.path;
-                const fileName = path.substr(path.lastIndexOf('/') + 1, path.length).toLowerCase();
+                const fileName = path.substring(path.lastIndexOf('/') + 1, path.length).toLowerCase();
                 if (!validFiles.includes(fileName)) return [];
             }
 
@@ -90,25 +112,24 @@ export function activate(): void {
                     'and this project adheres to [Semantic Versioning].',
                     '',
                     '## [Unreleased]',
+                    '',
                     '- /',
                     '',
                     `## [0.0.2] - ${dateFix}`,
                     '',
-                    '### Added',
+                    entryString(EntryType.ADDED),
+                    '',
                     '- $0',
                     '',
-                    '### Changed',
-                    '',
-                    '### Deprecated',
-                    '',
-                    '### Removed',
-                    '',
-                    '### Fixed',
-                    '',
-                    '### Security',
-                    '',
-                    '',
+                    entryString(
+                        EntryType.CHANGED,
+                        EntryType.DEPRECATED,
+                        EntryType.REMOVED,
+                        EntryType.FIXED,
+                        EntryType.SECURITY
+                    ),
                     `## [0.0.1] - ${dateFix}`,
+                    '',
                     '- initial release',
                     '',
                     '<!-- Links -->',
@@ -131,42 +152,23 @@ export function activate(): void {
                 ])
             );
 
-            const clVerFull = new vscode.SnippetString(
+            const clEntries = new vscode.SnippetString(
                 multilineString([
-                    `## [\${1:version}] - ${dateEditable}`,
+                    entryString(EntryType.ADDED),
                     '',
-                    '### Added',
                     '- $0',
-                    '',
-                    '### Changed',
-                    '',
-                    '### Deprecated',
-                    '',
-                    '### Removed',
-                    '',
-                    '### Fixed',
-                    '',
-                    '### Security',
-                    ''
+                    entryString(
+                        EntryType.CHANGED,
+                        EntryType.DEPRECATED,
+                        EntryType.REMOVED,
+                        EntryType.FIXED,
+                        EntryType.SECURITY
+                    )
                 ])
             );
 
-            const clEntries = new vscode.SnippetString(
-                multilineString([
-                    '### Added',
-                    '- $0',
-                    '',
-                    '### Changed',
-                    '',
-                    '### Deprecated',
-                    '',
-                    '### Removed',
-                    '',
-                    '### Fixed',
-                    '',
-                    '### Security',
-                    ''
-                ])
+            const clVerFull = new vscode.SnippetString(
+                multilineString([`## [\${1:version}] - ${dateEditable}`, '', clEntries.value])
             );
 
             return [
@@ -205,12 +207,12 @@ export function activate(): void {
                     documentation: new vscode.MarkdownString(clEntries.value.replace('- $0', '')),
                     insertText: clEntries
                 },
-                entrySnippet('Added'),
-                entrySnippet('Changed'),
-                entrySnippet('Deprecated'),
-                entrySnippet('Removed'),
-                entrySnippet('Fixed'),
-                entrySnippet('Security'),
+                entrySnippet(EntryType.ADDED),
+                entrySnippet(EntryType.CHANGED),
+                entrySnippet(EntryType.DEPRECATED),
+                entrySnippet(EntryType.REMOVED),
+                entrySnippet(EntryType.FIXED),
+                entrySnippet(EntryType.SECURITY),
                 {
                     label: 'cl-link-first',
                     kind: vscode.CompletionItemKind.Snippet,
@@ -244,6 +246,6 @@ export function activate(): void {
     };
 
     triggerCharacter
-        ? vscode.languages.registerCompletionItemProvider('markdown', completionProvider, 'c')
+        ? vscode.languages.registerCompletionItemProvider('markdown', completionProvider, '-')
         : vscode.languages.registerCompletionItemProvider('markdown', completionProvider);
 }
