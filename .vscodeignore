@@ -1,21 +1,23 @@
-# directories
-.github
-.husky
-.vscode
-.vscode-test
-node_modules
-src
-out
+### VSCode
+.vscode/
+.vscode-test/
 
-# files
-.editorconfig
-.eslintignore
-**/.eslintrc
-.gitignore
-.prettierignore
-.prettierrc
-vsc-extension-quickstart.md
-**/tsconfig.json
+### Sources
+src/
 **/*.map
 **/*.ts
+
+### Project
+.github/
+.trunk/
+.yarn/
+node_modules/
+.editorconfig
+.eslintrc
+.eslintignore
+.gitignore
+.prettierrc
+.prettierignore
+.yarnrc.yml
+tsconfig.json
 images/preview.gif

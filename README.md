@@ -1,23 +1,26 @@
-# **Keep a Changelog**
+<div align="center">
+<h1>Keep a Changelog</h1>
 
-> A [Visual Studio Code] extension that provides snippets for markdown files to create a changelog with the ruleset of [Keep a Changelog].
+A [Visual Studio Code] extension that provides snippets for markdown files to create a changelog with the ruleset of [Keep a Changelog].
 
-[![version]][marketplace]
-[![installs]][marketplace]
-[![rating]][marketplace]
+[![Version][version_badge]][version_link]
+[![Downloads][downloads_badge]][marketplace]
+[![Workflow Status][workflow_status_badge]][workflow_status_link]
+[![License][license_badge]][license]
 
-- [Discord]
-- [Marketplace]
+[Marketplace] | [Releases]
 
----
+</div>
 
 ## **📑 Overview**
+
 This is an extension for [Visual Studio Code].
 
 It lets you easily create changelogs with snippets which follow the ruleset of [Keep a Changelog].<br>
 It is recommended to use it with [Semantic Versioning].
 
 ### **Key Features:**
+
 - several snippets to save time when creating a changelog
 - snippet preview in IntelliSense
 - customizable date format via extension settings
@@ -29,6 +32,7 @@ It is recommended to use it with [Semantic Versioning].
 ![preview]
 
 ### **Includes Snippets:**
+
 | Snippet         | Description                                                                                                                                                                                  |
 |-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | cl-init         | Initiates a new changelog with the header, needed links and a place for your releases and tags.                                                                                              |
@@ -44,14 +48,16 @@ It is recommended to use it with [Semantic Versioning].
 | cl-link-first   | Creates a reference link for your first version tag. The version number and the keys for the URL can be overwritten by using tabs.                                                           |
 | cl-link-compare | Creates a reference link to compare two versions. This should be used for any version past the first version. The version numbers and the keys for the URL can be overwritten by using tabs. |
 
-
 ## **🔧 Installation**
+
 Go to the [Visual Studio Code Marketplate][Marketplace] and click the *install* button on the top of the site. You should be prompted to open [Visual Studio Code] in order to install the extension.
 
 You can also use the integrated extension browser in [VSCode][Visual Studio Code] to install it.
 
+If you want to manually install the extension, check out the [releases] to download the latest `.vsix` file.
 
-## **✋ Usage**
+## **📖 Usage**
+
 By default, snippets will only be available in Markdown files which are called `changelog.md` (case-insensitive).<br>
 If you want to change that, you can do this in the extension settings. Keep in mind that only Markdown files are supported though.
 
@@ -59,7 +65,7 @@ This ensures that you only have the changelog snippets in the files you want the
 You can also configure if the snippets should be suggested in unnamed files.
 
 All snippets of this extension are prefixed with `cl-`.<br>
-The `c` is a trigger character which means that as soon as you write the `c`, you will get suggestions with snippets from the extension.
+The `-` is a trigger character which means that as soon as you write the `-`, you will get suggestions with snippets from the extension.
 
 If you don't want this, you can disable the trigger character in the extension settings as well.
 
@@ -70,25 +76,30 @@ This is the default keybind for suggestions. If this doesn't work for you, make 
 
 Take a look at the additional settings and configure the extension to your liking.
 
-
 ## **⏰ Changelog**
+
 Everything related to versions and their release notes can be found in the [changelog].
 
-
 ## **🎓 License**
-This project is licensed under the [MIT][license] license.
+
+This project is licensed under the [LGPL-3.0][license].
 
 <!-- Images -->
-[version]: https://vsmarketplacebadge.apphb.com/version-short/rlnt.keep-a-changelog.svg
-[installs]: https://vsmarketplacebadge.apphb.com/installs-short/rlnt.keep-a-changelog.svg
-[rating]: https://vsmarketplacebadge.apphb.com/rating/rlnt.keep-a-changelog.svg
-[preview]: https://github.com/RLNT/vscode-keepachangelog/blob/master/images/preview.gif?raw=true
+[preview]: https://github.com/DAmNRelentless/vscode-keepachangelog/blob/main/images/preview.gif?raw=true
+
+<!-- Badges -->
+[version_badge]: https://img.shields.io/github/v/release/DAmNRelentless/vscode-keepachangelog?style=flat-square
+[version_link]: https://github.com/DAmNRelentless/vscode-keepachangelog/releases/latest
+[downloads_badge]: https://vsmarketplacebadge.apphb.com/installs-short/rlnt.keep-a-changelog.svg?style=flat-square
+[workflow_status_badge]: https://img.shields.io/github/workflow/status/DAmNRelentless/vscode-keepachangelog/CI?style=flat-square
+[workflow_status_link]: https://github.com/DAmNRelentless/vscode-keepachangelog/actions
+[license_badge]: https://img.shields.io/github/license/DAmNRelentless/vscode-keepachangelog?style=flat-square
 
 <!-- Links -->
-[Visual Studio Code]: https://code.visualstudio.com/
-[Keep a Changelog]: https://keepachangelog.com/
-[Marketplace]: https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog
-[discord]: https://discordapp.com/invite/Q3qxws6
-[Semantic Versioning]: https://semver.org/
+[visual studio code]: https://code.visualstudio.com/
+[keep a changelog]: https://keepachangelog.com/
+[marketplace]: https://marketplace.visualstudio.com/items?itemName=RLNT.keep-a-changelog
+[releases]: https://github.com/DAmNRelentless/vscode-keepachangelog/releases
+[semantic versioning]: https://semver.org/
 [changelog]: CHANGELOG.md
 [license]: LICENSE

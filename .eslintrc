@@ -5,8 +5,15 @@
     "ecmaVersion": 6,
     "sourceType": "module"
   },
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
-  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:jsdoc/recommended",
+    "plugin:import/typescript",
+    "plugin:regexp/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": ["@typescript-eslint", "jsdoc", "regexp"],
   "rules": {
     "prefer-const": "warn",
     "no-empty-function": "warn",

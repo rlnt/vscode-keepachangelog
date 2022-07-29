@@ -1,6 +1,12 @@
 # node modules
 node_modules
 
+# yarn
+.yarn
+
+# trunk
+.trunk
+
 # all markdown files
 **/*.md
 

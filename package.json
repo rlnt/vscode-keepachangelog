@@ -14,33 +14,27 @@
     "changelog snippets"
   ],
   "bugs": {
-    "url": "https://github.com/RLNT/vscode-keepachangelog/issues",
+    "url": "https://github.com/DAmNRelentless/vscode-keepachangelog/issues",
     "email": "team@rlnt.dev"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RLNT/vscode-keepachangelog.git"
+    "url": "https://github.com/DAmNRelentless/vscode-keepachangelog.git"
   },
-  "license": "MIT",
+  "license": "LGPL-3.0",
   "author": {
     "name": "RLNT"
   },
   "publisher": "RLNT",
-  "main": "./dist/extension.js",
+  "main": "./out/extension.js",
   "scripts": {
-    "vscode:prepublish": "npm run -S esbuild-base -- --minify",
     "compile": "tsc -p ./",
-    "deploy": "vsce publish",
-    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
-    "esbuild-watch": "npm run -S esbuild-base -- --sourcemap --watch",
-    "esbuild": "npm run -S esbuild-base -- --sourcemap",
     "format": "prettier --write",
     "lint": "eslint src --ext ts",
-    "prepare": "husky install",
-    "pretest": "npm run compile && npm run lint",
-    "test": "node ./out/test/runTest.js",
-    "pretty-quick": "pretty-quick --staged",
-    "test-compile": "tsc -p ./",
+    "package": "vsce package",
+    "publish": "vsce publish",
+    "pretest": "yarn run compile && yarn run lint",
+    "vscode:prepublish": "yarn run compile",
     "watch": "tsc -watch -p ./"
   },
   "contributes": {
@@ -103,28 +97,34 @@
     "onLanguage:markdown"
   ],
   "devDependencies": {
-    "@types/glob": "^7.1.4",
-    "@types/mocha": "^9.0.0",
-    "@types/node": "16.6.1",
-    "@types/vscode": "^1.59.0",
-    "@typescript-eslint/eslint-plugin": "^4.29.2",
-    "@typescript-eslint/parser": "^4.29.2",
-    "esbuild": "^0.12.20",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "glob": "^7.1.7",
-    "husky": "^7.0.1",
-    "mocha": "^9.0.3",
-    "prettier": "^2.3.2",
-    "prettier-plugin-packagejson": "^2.2.11",
-    "pretty-quick": "^3.1.1",
-    "typescript": "^4.3.5",
-    "vsce": "^1.96.1",
-    "vscode-test": "^1.6.1"
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.69.0",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jsdoc": "^39.3.3",
+    "eslint-plugin-regexp": "^1.8.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "prettier": "^2.7.1",
+    "prettier-plugin-jsdoc": "^0.3.38",
+    "prettier-plugin-packagejson": "^2.2.18",
+    "sinusbot-scripting-engine": "^1.0.18",
+    "typescript": "^4.7.4",
+    "vsce": "^2.10.0"
   },
+  "packageManager": "yarn@3.2.2",
   "engines": {
-    "vscode": "^1.59.0"
+    "vscode": "^1.69.0"
   },
   "icon": "images/icon.png",
-  "markdown": "github"
+  "markdown": "github",
+  "vsce": {
+    "dependencies": false,
+    "useYarn": false
+  }
 }

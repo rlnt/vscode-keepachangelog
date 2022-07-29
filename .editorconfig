@@ -11,5 +11,5 @@ insert_final_newline = true
 [*.md]
 insert_final_newline = false
 
-[*.{json,yml,yaml,editorconfig,prettierrc,eslintrc}]
+[*.{json,yml,yaml,prettierrc,eslintrc}]
 indent_size = 2
