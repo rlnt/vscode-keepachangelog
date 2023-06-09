@@ -1,5 +1,7 @@
 import * as vscode from 'vscode';
 
+const triggerCharPattern = /(?:cl)?-/;
+
 enum EntryType {
     ADDED = 'Added',
     CHANGED = 'Changed',
@@ -11,6 +13,24 @@ enum EntryType {
 
 function multilineString(input: string[]): string {
     return input.join('\n');
+}
+
+function calculateRange(
+    doc: vscode.TextDocument,
+    pos: vscode.Position,
+    ctx: vscode.CompletionContext
+): vscode.Range | undefined {
+    if (ctx.triggerKind != vscode.CompletionTriggerKind.TriggerCharacter) return undefined;
+
+    const line = doc.lineAt(pos.line);
+    const lineText = line.text.substring(0, pos.character);
+
+    // replace the length of the matched trigger character pattern with the snippet
+    const match = triggerCharPattern.exec(lineText);
+    if (match) {
+        const range = new vscode.Range(pos.line, pos.character - match[0].length, pos.line, pos.character);
+        return range;
+    }
 }
 
 function entrySnippet(type: EntryType): vscode.CompletionItem {
@@ -93,7 +113,12 @@ export function activate(): void {
     }
 
     const completionProvider: vscode.CompletionItemProvider<vscode.CompletionItem> = {
-        provideCompletionItems(doc: vscode.TextDocument): vscode.CompletionItem[] {
+        provideCompletionItems(
+            doc: vscode.TextDocument,
+            pos: vscode.Position,
+            _,
+            ctx: vscode.CompletionContext
+        ): vscode.CompletionItem[] {
             if (doc.isUntitled) {
                 if (!untitledFile) return [];
             } else {
@@ -198,7 +223,8 @@ export function activate(): void {
                     kind: vscode.CompletionItemKind.Snippet,
                     detail: 'Initiates a new version entry without any fields.',
                     documentation: new vscode.MarkdownString(`## [1.0.0] - ${dateDisplay}`),
-                    insertText: new vscode.SnippetString(`## [\${1:version}] - ${dateEditable}`)
+                    insertText: new vscode.SnippetString(`## [\${1:version}] - ${dateEditable}`),
+                    range: calculateRange(doc, pos, ctx)
                 },
                 {
                     label: 'cl-entries',
