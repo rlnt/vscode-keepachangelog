@@ -15,7 +15,7 @@
   ],
   "bugs": {
     "url": "https://github.com/DAmNRelentless/vscode-keepachangelog/issues",
-    "email": "team@rlnt.dev"
+    "email": "relentless@rlnt.dev"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
   },
   "license": "LGPL-3.0",
   "author": {
-    "name": "RLNT"
+    "name": "Relentless"
   },
   "publisher": "RLNT",
   "main": "./out/extension.js",
