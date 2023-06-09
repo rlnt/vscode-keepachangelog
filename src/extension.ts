@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import { parseConfig } from './config';
 
 const triggerCharPattern = /(?:cl)?-/;
 
@@ -25,12 +26,23 @@ function calculateRange(
     const line = doc.lineAt(pos.line);
     const lineText = line.text.substring(0, pos.character);
 
-    // replace the length of the matched trigger character pattern with the snippet
     const match = triggerCharPattern.exec(lineText);
     if (match) {
         const range = new vscode.Range(pos.line, pos.character - match[0].length, pos.line, pos.character);
         return range;
     }
+}
+
+function appendRange(
+    doc: vscode.TextDocument,
+    pos: vscode.Position,
+    ctx: vscode.CompletionContext,
+    ...snippets: vscode.CompletionItem[]
+): vscode.CompletionItem[] {
+    snippets.forEach(e => {
+        e.range = calculateRange(doc, pos, ctx);
+    });
+    return snippets;
 }
 
 function entrySnippet(type: EntryType): vscode.CompletionItem {
@@ -72,45 +84,8 @@ function getRepository(repo: string, index: number): string {
 }
 
 export function activate(): void {
-    const config = vscode.workspace.getConfiguration('keep-a-changelog');
-    const validFiles = config.get('validFiles', ['changelog.md']).map(e => {
-        e.toLowerCase();
-        if (!e.endsWith('.md')) e += '.md';
-        return e;
-    });
-    const untitledFile = config.get('untitledFile', false);
-    const triggerCharacter = config.get('triggerCharacter', true);
-    const dateFormat = config.get('dateFormat');
-    const dateSeparator = config.get('dateSeparator', '-');
-    const defaultAuthor = config.get('defaultAuthor', '');
-    const defaultRepository = config.get('defaultRepository', '');
-
-    let dateDisplay: string;
-    let dateEditable: string;
-    let dateFix: string;
-
-    switch (dateFormat) {
-        case 'YYYY/MM/DD':
-            dateDisplay = `2012${dateSeparator}10${dateSeparator}25`;
-            dateEditable = `\${2:$CURRENT_YEAR}${dateSeparator}\${3:$CURRENT_MONTH}${dateSeparator}\${4:$CURRENT_DATE}`;
-            dateFix = `$CURRENT_YEAR${dateSeparator}$CURRENT_MONTH${dateSeparator}$CURRENT_DATE`;
-            break;
-        case 'MM/DD/YYYY':
-            dateDisplay = `10${dateSeparator}25${dateSeparator}2012`;
-            dateEditable = `\${2:$CURRENT_MONTH}${dateSeparator}\${3:$CURRENT_DATE}${dateSeparator}\${4:$CURRENT_YEAR}`;
-            dateFix = `$CURRENT_MONTH${dateSeparator}$CURRENT_DATE${dateSeparator}$CURRENT_YEAR`;
-            break;
-        case 'DD/MM/YYYY':
-            dateDisplay = `25${dateSeparator}10${dateSeparator}2012`;
-            dateEditable = `\${2:$CURRENT_DATE}${dateSeparator}\${3:$CURRENT_MONTH}${dateSeparator}\${4:$CURRENT_YEAR}`;
-            dateFix = `$CURRENT_DATE${dateSeparator}$CURRENT_MONTH${dateSeparator}$CURRENT_YEAR`;
-            break;
-        default:
-            dateDisplay = `2012${dateSeparator}10${dateSeparator}25`;
-            dateEditable = `\${2:$CURRENT_YEAR}${dateSeparator}\${3:$CURRENT_MONTH}${dateSeparator}\${4:$CURRENT_DATE}`;
-            dateFix = `$CURRENT_YEAR${dateSeparator}$CURRENT_MONTH${dateSeparator}$CURRENT_DATE`;
-            break;
-    }
+    const { validFiles, untitledFile, triggerCharacter, dateData, defaultAuthor, defaultRepository } = parseConfig();
+    const { dateDisplay, dateEditable, dateFix } = dateData;
 
     const completionProvider: vscode.CompletionItemProvider<vscode.CompletionItem> = {
         provideCompletionItems(
@@ -127,6 +102,25 @@ export function activate(): void {
                 if (!validFiles.includes(fileName)) return [];
             }
 
+            const clEntries = new vscode.SnippetString(
+                multilineString([
+                    entryString(EntryType.ADDED),
+                    '',
+                    '- $0',
+                    entryString(
+                        EntryType.CHANGED,
+                        EntryType.DEPRECATED,
+                        EntryType.REMOVED,
+                        EntryType.FIXED,
+                        EntryType.SECURITY
+                    )
+                ])
+            );
+
+            const clVerFull = new vscode.SnippetString(
+                multilineString([`## [\${1:version}] - ${dateEditable}`, '', clEntries.value])
+            );
+
             const clInit = new vscode.SnippetString(
                 multilineString([
                     '# Changelog',
@@ -142,17 +136,7 @@ export function activate(): void {
                     '',
                     `## [0.0.2] - ${dateFix}`,
                     '',
-                    entryString(EntryType.ADDED),
-                    '',
-                    '- $0',
-                    '',
-                    entryString(
-                        EntryType.CHANGED,
-                        EntryType.DEPRECATED,
-                        EntryType.REMOVED,
-                        EntryType.FIXED,
-                        EntryType.SECURITY
-                    ),
+                    clEntries.value,
                     `## [0.0.1] - ${dateFix}`,
                     '',
                     '- initial release',
@@ -177,26 +161,10 @@ export function activate(): void {
                 ])
             );
 
-            const clEntries = new vscode.SnippetString(
-                multilineString([
-                    entryString(EntryType.ADDED),
-                    '',
-                    '- $0',
-                    entryString(
-                        EntryType.CHANGED,
-                        EntryType.DEPRECATED,
-                        EntryType.REMOVED,
-                        EntryType.FIXED,
-                        EntryType.SECURITY
-                    )
-                ])
-            );
-
-            const clVerFull = new vscode.SnippetString(
-                multilineString([`## [\${1:version}] - ${dateEditable}`, '', clEntries.value])
-            );
-
-            return [
+            return appendRange(
+                doc,
+                pos,
+                ctx,
                 {
                     label: 'cl-init',
                     kind: vscode.CompletionItemKind.Snippet,
@@ -223,8 +191,7 @@ export function activate(): void {
                     kind: vscode.CompletionItemKind.Snippet,
                     detail: 'Initiates a new version entry without any fields.',
                     documentation: new vscode.MarkdownString(`## [1.0.0] - ${dateDisplay}`),
-                    insertText: new vscode.SnippetString(`## [\${1:version}] - ${dateEditable}`),
-                    range: calculateRange(doc, pos, ctx)
+                    insertText: new vscode.SnippetString(`## [\${1:version}] - ${dateEditable}`)
                 },
                 {
                     label: 'cl-entries',
@@ -267,7 +234,7 @@ export function activate(): void {
                         )}/compare/v\${4:PreviousVersion}..v\${1:Version}$0`
                     )
                 }
-            ];
+            );
         }
     };
 
