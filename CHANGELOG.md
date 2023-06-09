@@ -5,9 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog],
 and this project adheres to [Semantic Versioning].
 
-## [Unreleased]
+## [1.3.0] - 2023-06-09
 
-- /
+### Changed
+
+- a lot of internal refactoring
+
+### Fixed
+
+- snippets do not remove the prefix ([#9])
+
+### Security
+
+- updated dependencies and VSCode engine
+
+<!-- Links -->
+[#9]: https://github.com/DAmNRelentless/vscode-keepachangelog/issues/9
 
 ## [1.2.2] - 2022-07-29
 
@@ -121,7 +134,7 @@ and this project adheres to [Semantic Versioning].
 [semantic versioning]: https://semver.org/spec/v2.0.0.html
 
 <!-- Versions -->
-[unreleased]: https://github.com/DAmNRelentless/vscode-keepachangelog/compare/v1.2.2...HEAD
+[1.3.0]: https://github.com/DAmNRelentless/vscode-keepachangelog/compare/v1.2.2...v1.3.0
 [1.2.2]: https://github.com/DAmNRelentless/vscode-keepachangelog/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/DAmNRelentless/vscode-keepachangelog/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/DAmNRelentless/vscode-keepachangelog/compare/v1.1.2...v1.2.0

@@ -88,10 +88,10 @@ This project is licensed under the [LGPL-3.0][license].
 [preview]: https://github.com/DAmNRelentless/vscode-keepachangelog/blob/main/images/preview.gif?raw=true
 
 <!-- Badges -->
-[version_badge]: https://img.shields.io/github/v/release/DAmNRelentless/vscode-keepachangelog?style=flat-square
+[version_badge]: https://img.shields.io/github/v/release/DAmNRelentless/vscode-keepachangelog?include_prereleases&style=flat-square
 [version_link]: https://github.com/DAmNRelentless/vscode-keepachangelog/releases/latest
-[downloads_badge]: https://vsmarketplacebadge.apphb.com/installs-short/rlnt.keep-a-changelog.svg?style=flat-square
-[workflow_status_badge]: https://img.shields.io/github/workflow/status/DAmNRelentless/vscode-keepachangelog/Build?style=flat-square
+[downloads_badge]: https://img.shields.io/visual-studio-marketplace/d/rlnt.keep-a-changelog?style=flat-square
+[workflow_status_badge]: https://img.shields.io/github/actions/workflow/status/DAmNRelentless/vscode-keepachangelog/build.yml?style=flat-square
 [workflow_status_link]: https://github.com/DAmNRelentless/vscode-keepachangelog/actions
 [license_badge]: https://img.shields.io/github/license/DAmNRelentless/vscode-keepachangelog?style=flat-square
 
