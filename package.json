@@ -57,7 +57,7 @@
         },
         "keep-a-changelog.triggerCharacter": {
           "title": "Trigger Character",
-          "description": "When true, changelog snippet suggestions will be triggered by the character c.",
+          "description": "When true, changelog snippet suggestions will be triggered by the character '-'.",
           "type": "boolean",
           "default": true
         },
