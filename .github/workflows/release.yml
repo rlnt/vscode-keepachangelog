@@ -1,9 +1,9 @@
 name: Release
 on:
-  workflow_dispatch:
+  workflow_dispatch: null
   push:
     tags:
-      - 'v*.*.*'
+      - v*.*.*
 env:
   NODE_VERSION: 18
 

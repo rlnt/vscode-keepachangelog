@@ -1,10 +1,36 @@
 version: 0.1
 cli:
-  version: 0.15.1-beta
+  version: 1.10.0
+plugins:
+  sources:
+    - id: trunk
+      ref: v0.0.17
+      uri: https://github.com/trunk-io/plugins
 lint:
   enabled:
-    - actionlint@1.6.15
-    - eslint@8.20.0
-    - git-diff-check@SYSTEM
-    - gitleaks@8.9.0
-    - prettier@2.7.1
+    - actionlint@1.6.24
+    - eslint@8.42.0
+    - git-diff-check
+    - gitleaks@8.16.4
+    - prettier@2.8.8
+    - yamllint@1.32.0
+  disabled:
+    - markdownlint
+    - oxipng
+  ignore:
+    - linters: [ALL]
+      paths:
+        - .yarn
+        - node_modules
+runtimes:
+  enabled:
+    - go@1.19.5
+    - node@18.12.1
+    - python@3.10.8
+actions:
+  disabled:
+    - trunk-fmt-pre-commit
+  enabled:
+    - trunk-announce
+    - trunk-check-pre-push
+    - trunk-upgrade-available

@@ -1,14 +1,14 @@
 name: Build
 on:
-  workflow_dispatch:
+  workflow_dispatch: null
   push:
     branches:
-      - 'main'
+      - main
     tags-ignore:
       - '**'
   pull_request:
     branches:
-      - 'main'
+      - main
 env:
   NODE_VERSION: 18
 
@@ -30,7 +30,7 @@ jobs:
         run: yarn install
 
       - name: Trunk Check
-        uses: trunk-io/trunk-action@v1
+        uses: trunk-io/trunk-action@v1.1.1
         with:
           trunk-token: ${{ secrets.TRUNK_TOKEN }}
 

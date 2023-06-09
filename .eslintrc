@@ -5,18 +5,11 @@
     "ecmaVersion": 6,
     "sourceType": "module"
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:jsdoc/recommended",
-    "plugin:regexp/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier"
-  ],
-  "plugins": ["@typescript-eslint", "jsdoc", "regexp"],
+  "extends": ["eslint:recommended", "plugin:regexp/recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  "plugins": ["@typescript-eslint", "regexp"],
   "rules": {
     "prefer-const": "warn",
     "no-empty-function": "warn",
-    "jsdoc/require-jsdoc": "off",
     "@typescript-eslint/ban-types": "warn",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/explicit-member-accessibility": ["warn", { "accessibility": "explicit" }],
